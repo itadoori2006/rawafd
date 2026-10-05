@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developers.cloudflare.com/workers/wrangler/config-schema.json",
+  "name": "rawafd",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-02",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+
+  "assets": {
+    "directory": "./assets",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+
+  "durable_objects": {
+    "bindings": [
+      { "name": "DO_QUEUE_HANDLER", "class_name": "DOQueueHandler" },
+      { "name": "DO_SHARDED_TAG_CACHE", "class_name": "DOShardedTagCache" },
+      { "name": "BUCKET_CACHE_PURGE", "class_name": "BucketCachePurge" }
+    ]
+  },
+
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "DOQueueHandler",
+        "DOShardedTagCache",
+        "BucketCachePurge"
+      ]
+    }
+  ],
+
+  "vars": {
+    "NEXT_RUNTIME": "edge",
+    "NEXT_PUBLIC_SITE_URL": "https://your-domain.example",
+    "EMAIL_PROVIDER": "resend"
+  }
+}

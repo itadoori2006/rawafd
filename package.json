@@ -1,0 +1,21 @@
+{
+  "name": "rawafd-cloudflare-deployment",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy --config wrangler.jsonc",
+    "dev": "wrangler dev --config wrangler.jsonc",
+    "deploy:pages-compatible": "wrangler deploy --config wrangler.pages.jsonc",
+    "dev:pages-compatible": "wrangler dev --config wrangler.pages.jsonc",
+    "check:worker": "node --check worker.js",
+    "check:admin": "node --check scripts/create-admin.mjs",
+    "db:migrate": "node -e \"console.log('Run supabase-migration.sql in the Supabase SQL editor before creating the admin.')\"",
+    "admin:create": "node scripts/create-admin.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.47.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  }
+}
